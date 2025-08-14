@@ -1,8 +1,11 @@
-# Copyright (c) HashiCorp, Inc.
-# SPDX-License-Identifier: MPL-2.0
-
 variable "region" {
   description = "AWS region"
   type        = string
   default     = "us-east-2"
+}
+
+variable "candidate_name" {
+  description = "Candidate name"
+  type        = string
+  default     = "anna"
 }

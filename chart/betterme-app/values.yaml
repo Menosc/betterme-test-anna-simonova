@@ -1,0 +1,17 @@
+replicaCount: 1
+
+image:
+  repository: public.ecr.aws/h5v6m5z0/betterme-test/devops-test-app
+  pullPolicy: IfNotPresent
+  tag: latest
+
+service:
+  type: LoadBalancer
+  port: 3000
+
+env:
+  PUBLIC_BUCKET_URL: "https://betterme-public-YOURNAME.s3.amazonaws.com"
+  PRIVATE_BUCKET_URL: "https://betterme-private-YOURNAME.s3.amazonaws.com"
+  AWS_REGION: "us-east-2"
+
+resources: {}
