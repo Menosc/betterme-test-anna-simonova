@@ -32,8 +32,8 @@ module "public_s3" {
   restrict_public_buckets = false
 
   tags = {
-    Owner       = var.candidate_name
-    Terraform   = "true"
+    Owner     = var.candidate_name
+    Terraform = "true"
   }
 }
 
@@ -83,8 +83,7 @@ module "private_s3" {
   })
 
   tags = {
-    Owner       = var.candidate_name
-    Terraform   = "true"
+    Owner     = var.candidate_name
+    Terraform = "true"
   }
 }
-

@@ -76,7 +76,7 @@ spec:
           secretKeyRef:
             name: db-credentials
             key: url
-  
+
             {{- with .Values.livenessProbe }}
             livenessProbe:
               {{- toYaml . | nindent 12 }}

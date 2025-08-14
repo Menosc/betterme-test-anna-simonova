@@ -11,7 +11,7 @@ resource "aws_secretsmanager_secret" "db_credentials" {
 }
 
 resource "aws_secretsmanager_secret_version" "db_credentials_version" {
-  secret_id     = aws_secretsmanager_secret.db_credentials.id
+  secret_id = aws_secretsmanager_secret.db_credentials.id
   secret_string = jsonencode({
     username = "betterme_user"
     password = random_password.db_password.result
@@ -30,20 +30,20 @@ resource "aws_db_subnet_group" "postgres_subnet_group" {
 
 # Create RDS Postgres instance
 resource "aws_db_instance" "postgres" {
-  identifier              = "betterme-postgres"
-  engine                  = "postgres"
-  engine_version          = "15.3"
-  instance_class          = "db.t3.micro"
-  allocated_storage       = 20
-  db_subnet_group_name    = aws_db_subnet_group.postgres_subnet_group.name
-  vpc_security_group_ids  = [aws_security_group.postgres_sg.id]
+  identifier             = "betterme-postgres"
+  engine                 = "postgres"
+  engine_version         = "15.3"
+  instance_class         = "db.t3.micro"
+  allocated_storage      = 20
+  db_subnet_group_name   = aws_db_subnet_group.postgres_subnet_group.name
+  vpc_security_group_ids = [aws_security_group.postgres_sg.id]
 
-  username                = "betterme_user"
-  password                = random_password.db_password.result
+  username = "betterme_user"
+  password = random_password.db_password.result
 
-  skip_final_snapshot     = true
-  publicly_accessible     = false
-  storage_encrypted       = true
+  skip_final_snapshot = true
+  publicly_accessible = false
+  storage_encrypted   = true
 
   tags = {
     Name = "betterme-postgres"

@@ -3,7 +3,7 @@ provider "aws" {
 
 }
 
-# Filter out local zones, which are not currently supported 
+# Filter out local zones, which are not currently supported
 # with managed node groups
 data "aws_availability_zones" "available" {
   filter {
@@ -50,10 +50,10 @@ module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "21.0.9"
 
-  name    = local.cluster_name
+  name               = local.cluster_name
   kubernetes_version = "1.29"
 
-  endpoint_public_access           = true
+  endpoint_public_access                   = true
   enable_cluster_creator_admin_permissions = true
 
   addons = {
@@ -67,17 +67,17 @@ module "eks" {
 
   eks_managed_node_groups = {
     betterme = {
-      name = "betterme-node-group"
-      ami_type = "AL2_x86_64"
+      name           = "betterme-node-group"
+      ami_type       = "AL2_x86_64"
       instance_types = ["t3.small"]
-      min_size     = 1
-      max_size     = 3
-      desired_size = 2
+      min_size       = 1
+      max_size       = 3
+      desired_size   = 2
     }
-}
+  }
 }
 
-# https://aws.amazon.com/blogs/containers/amazon-ebs-csi-driver-is-now-generally-available-in-amazon-eks-add-ons/ 
+# https://aws.amazon.com/blogs/containers/amazon-ebs-csi-driver-is-now-generally-available-in-amazon-eks-add-ons/
 data "aws_iam_policy" "ebs_csi_policy" {
   arn = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
 }

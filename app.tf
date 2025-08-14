@@ -30,10 +30,10 @@ data "aws_eks_cluster_auth" "cluster" {
 }
 
 resource "helm_release" "betterme_app" {
-  name       = "betterme"
-  namespace  = "betterme"
-  chart      = "./chart"  
-  version    = "0.1.0"
+  name      = "betterme"
+  namespace = "betterme"
+  chart     = "./chart"
+  version   = "0.1.0"
 
   set {
     name  = "image.repository"
