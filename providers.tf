@@ -3,14 +3,14 @@ terraform {
     aws = {
       source  = "hashicorp/aws"
       version = "~> 6.5"
-      
+
     }
   }
   required_version = ">= 1.3.0"
 }
 
 provider "aws" {
-  region     = "${var.region}"   
+  region = var.region
 
   default_tags {
     tags = {
@@ -18,6 +18,6 @@ provider "aws" {
       Terraform   = "true"
       Environment = var.environment
       Project     = var.project_name
-    }  
-  }       
+    }
+  }
 }

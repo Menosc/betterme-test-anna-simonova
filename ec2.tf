@@ -1,18 +1,18 @@
 
 
 module "ec2" {
-  source  = "terraform-aws-modules/ec2-instance/aws"
+  source = "terraform-aws-modules/ec2-instance/aws"
 
-  name                       = "${var.project_name}-${var.environment}-${var.candidate_name}-ec2"
-  instance_type              = "t4g.small"
-  ami                        = "ami-03d9fcc39480315d4" # ubuntu 24.04 (64-bit (Arm))
-  subnet_id                  = module.vpc.public_subnets[0]
+  name                        = "${var.project_name}-${var.environment}-${var.candidate_name}-ec2"
+  instance_type               = "t4g.small"
+  ami                         = "ami-03d9fcc39480315d4" # ubuntu 24.04 (64-bit (Arm))
+  subnet_id                   = module.vpc.public_subnets[0]
   associate_public_ip_address = true
 
 
-  vpc_security_group_ids     = [module.vpc.default_security_group_id]
+  vpc_security_group_ids = [module.vpc.default_security_group_id]
 
-  user_data = <<-EOF
+  user_data                   = <<-EOF
     #!/bin/bash
 
     # Оновлюємо пакети
@@ -43,5 +43,5 @@ module "ec2" {
         public.ecr.aws/h5v6m5z0/betterme-test/devops-test-app:latest
 
    EOF
-   user_data_replace_on_change = true
+  user_data_replace_on_change = true
 }

@@ -67,3 +67,65 @@ Make sure you use your credentials when applying the changes.
 ``` hcl
 terraform apply -var-file="terraform.tfvars
 ```
+
+After that you can check the availability of your resources:
+
+```bash
+curl http://betterme-test-anna-simonova.duckdns.org:3000/db
+curl http://betterme-test-anna-simonova.duckdns.org:3000/public-s3
+curl http://betterme-test-anna-simonova.duckdns.org:3000/private-s3
+```
+
+The output should display success:
+![the example](./img/screenshot-1.png)
+
+<!-- BEGIN_TF_DOCS -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 6.5 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_random"></a> [random](#provider\_random) | 3.7.2 |
+
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_db"></a> [db](#module\_db) | terraform-aws-modules/rds/aws | n/a |
+| <a name="module_ec2"></a> [ec2](#module\_ec2) | terraform-aws-modules/ec2-instance/aws | n/a |
+| <a name="module_private_s3_bucket"></a> [private\_s3\_bucket](#module\_private\_s3\_bucket) | terraform-aws-modules/s3-bucket/aws | 5.5.0 |
+| <a name="module_public_s3_bucket"></a> [public\_s3\_bucket](#module\_public\_s3\_bucket) | terraform-aws-modules/s3-bucket/aws | 5.5.0 |
+| <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-aws-modules/vpc/aws | n/a |
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [random_password.db_password](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_aws_access_key"></a> [aws\_access\_key](#input\_aws\_access\_key) | AWS access key | `string` | n/a | yes |
+| <a name="input_aws_secret_key"></a> [aws\_secret\_key](#input\_aws\_secret\_key) | AWS secret key | `string` | n/a | yes |
+| <a name="input_candidate_name"></a> [candidate\_name](#input\_candidate\_name) | Candidate name | `string` | `"anna"` | no |
+| <a name="input_environment"></a> [environment](#input\_environment) | Environment | `string` | `"test"` | no |
+| <a name="input_ip_cidr"></a> [ip\_cidr](#input\_ip\_cidr) | IP CIDR | `string` | `"0.0.0.0/0"` | no |
+| <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name | `string` | `"betterme"` | no |
+| <a name="input_region"></a> [region](#input\_region) | AWS region | `string` | `"us-east-2"` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| <a name="output_db_endpoint"></a> [db\_endpoint](#output\_db\_endpoint) | n/a |
+| <a name="output_db_password"></a> [db\_password](#output\_db\_password) | n/a |
+| <a name="output_db_username"></a> [db\_username](#output\_db\_username) | n/a |
+<!-- END_TF_DOCS -->
