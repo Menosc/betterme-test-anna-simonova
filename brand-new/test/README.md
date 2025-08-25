@@ -1,0 +1,1 @@
+[](https://community.cloudflare.com/t/using-cloudflare-only-for-custom-ssl-certificate-without-transferring-domain/660537) i couldnot issue certs with cloudlfare 
