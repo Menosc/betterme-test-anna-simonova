@@ -1,0 +1,23 @@
+repos:
+  # 1. Keep pre-commit itself up to date
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-merge-conflict
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+
+  # 2. Terraform formatting
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.83.4
+    hooks:
+      - id: terraform_fmt
+      - id: terraform_validate
+      - id: terraform_tflint
+
+  # 3. (Optional) Check Terraform docs are updated
+  - repo: https://github.com/terraform-docs/terraform-docs
+    rev: v0.17.0
+    hooks:
+      - id: terraform-docs-go
+        args: ["markdown", "table", "--output-file", "README.md", "."]
